@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 
-const Navbar = () => {
+const Nav = () => {
 
     const [theme, setTheme] = useState('light');
     useEffect(()=>{
@@ -20,15 +21,15 @@ const Navbar = () => {
     console.log(theme)
     return (
         <div>
-            <div className="navbar bg-base-100 shadow-lg px-4 fixed z-10">
+            <div className="navbar bg-base-100 shadow-lg px-4 sm:px-8 fixed z-10">
             <div className="flex-1">
-                <a className="btn btn-ghost gap-0 text-secondary normal-case  text-2xl">Byte<span className="text-primary">Blaze</span></a>
+                <Link to='/' className="btn btn-ghost gap-0 text-secondary normal-case  text-2xl">Byte<span className="text-primary">Blaze</span></Link>
             </div>
-            <div className="flex-none">
-                <ul className="menu menu-horizontal px-1">
-                <li className="font-bold"><a>Home</a></li>               
-                <li className="font-bold text-primary"><a>Blogs</a></li>               
-                <li className="font-bold"><a>Bookmarks</a></li>               
+            <div className="flex-none gap-2">              
+                <ul className="menu menu-horizontal px-1 hidden items-center sm:flex gap-5">
+                <NavLink to='/' className={({isActive})=> isActive ? 'text-primary font-bold' : 'font-bold'}>Home</NavLink>               
+                <NavLink to='/blogs' className={({isActive})=> isActive ? 'text-primary font-bold' : 'font-bold'}>Blogs</NavLink>               
+                <NavLink to='/bookmarks' className={({isActive})=> isActive ? 'text-primary font-bold' : 'font-bold'}>Bookmarks</NavLink>                                           
                 </ul>
                 <label className="cursor-pointer grid place-items-center">
                 <input onChange={handleToggle} type="checkbox"  className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"/>
@@ -41,4 +42,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Nav;
